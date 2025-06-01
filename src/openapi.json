@@ -1,0 +1,58 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Learn Catalog Connector",
+    "description": "Conector personalizado para Power Automate que invoca la API de catálogo de Microsoft Learn"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/modules": {
+      "get": {
+        "summary": "Obtener todos los módulos",
+        "operationId": "listModules",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Lista de módulos retornada correctamente",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/modules/{moduleId}": {
+      "get": {
+        "summary": "Obtener detalle de un módulo",
+        "operationId": "getModuleById",
+        "parameters": [
+          {
+            "name": "moduleId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID del módulo que se desea obtener"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Detalle del módulo retornado correctamente",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Módulo no encontrado"
+          }
+        }
+      }
+    }
+  }
+}
